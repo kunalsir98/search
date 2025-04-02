@@ -5,3 +5,4 @@ numpy>=2.2.4
 pyautogen>=0.8.4
 requests>=2.32.3
 streamlit>=1.44.0
+ag2[openai]
