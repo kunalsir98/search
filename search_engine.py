@@ -31,6 +31,10 @@ def create_search_agents(llm_config):
             If the topic relates to financial markets, gather relevant stock prices, trends and news.
             If the topic relates to healthcare, gather latest studies, statistics and breakthroughs.
             For technology topics, focus on innovations, company news, and market trends.
+            For Art and Culture, focus on latest Ancient Discovery, Historical culture, Historical inovations.
+            For Entertainment ,focus on Top 10 movies in world, entertainment news, Celibrity Information and various other things.
+            For Sports, focus on Track live scores and upcoming matches,Provide player and team statistics,Predict match outcomes using AI models,Analyze historical sports trends,Recommend training programs and techniques for athletes.
+            For Top News Live Provide real-time updates on global and regional news,Categorize news into Business, Politics, Technology, Health, and more,Summarize key headlines and breaking stories,Offer AI-driven sentiment analysis of trending news,Allow users to personalize their news feed based on interests.
         """
     )
 
