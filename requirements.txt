@@ -8,3 +8,4 @@ streamlit>=1.44.0
 ag2[openai]
 plotly
 fpdf
+trafilatura>=2.0.0

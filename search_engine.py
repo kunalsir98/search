@@ -538,7 +538,36 @@ def run_search(agents, query, current_date):
        🔹 General Guidelines:  
        - Ensure all data-driven insights are clear and well-explained.  
        - Write in a professional, analytical, and engaging tone.  
-       - Summarize key takeaways in a concise conclusion section.  
+       - Summarize key takeaways in a concise conclusion section. 
+
+       🔹Art and Culture:
+        - Evaluate Ancient art and Technologies.
+        - Analyze and compare different ancient art styles?
+        -Provide historical context on ancient technologies?
+        -Use AI to restore or recreate ancient artworks?
+        -Suggest modern applications of ancient technologies?
+            
+        🔹Entertainment
+        -Recommend movies, music, and books based on user preferences.
+        -Analyze trends in cinema, music, and gaming.
+        -Generate AI-driven scripts, lyrics, or creative content.
+        -Track box office performance and music charts.
+        -Provide behind-the-scenes insights into entertainment industries
+
+        🔹Sports
+        -Track live scores and upcoming matches.
+        -Provide player and team statistics.
+        -Predict match outcomes using AI models.
+        -Analyze historical sports trends.
+        -Recommend training programs and techniques for athletes.
+
+        🔹Top News Live
+        -Provide real-time updates on global and regional news.
+        -Categorize news into Business, Politics, Technology, Health, and more.
+         -Summarize key headlines and breaking stories.
+        -Offer AI-driven sentiment analysis of trending news.
+        -Allow users to personalize their news feed based on interests.
+ 
     """
     
     # In a real implementation, we would use the agents to perform the search

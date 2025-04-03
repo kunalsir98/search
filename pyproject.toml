@@ -11,4 +11,5 @@ dependencies = [
     "pyautogen>=0.8.4",
     "requests>=2.32.3",
     "streamlit>=1.44.0",
+    "trafilatura>=2.0.0",
 ]

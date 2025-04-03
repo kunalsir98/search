@@ -36,13 +36,16 @@ def extract_specific_content(results, query):
     }
     
     # Extract relevant information based on query type
-    if any(term in query_lower for term in ['stock', 'market', 'price', 'investment', 'financial']):
+    if any(term in query_lower for term in ['stock', 'market', 'price', 'investment', 'financial','Sports','Entertainment','Art and culture','trending news']):
         # Financial topic
         content = extract_financial_content(results, query, all_text)
-    elif any(term in query_lower for term in ['health', 'covid', 'vaccine', 'medical', 'disease', 'treatment']):
+    elif any(term in query_lower for term in ['health', 'covid', 'vaccine', 'medical', 'disease', 'treatment','Hospital']):
         # Healthcare topic
         content = extract_healthcare_content(results, query, all_text)
-    elif any(term in query_lower for term in ['tech', 'technology', 'ai', 'software', 'digital', 'app']):
+    elif any(term in query_lower for term in ['tech', 'technology', 'ai', 'software', 'digital', 'app','Mobile Phones','Laptop']):
+        # Technology topic
+        content = extract_technology_content(results, query, all_text)
+    elif any(term in query_lower for term in ['coding','enginering','Business Intelligence','Data-Science']):
         # Technology topic
         content = extract_technology_content(results, query, all_text)
     else:

@@ -44,7 +44,7 @@ def setup_page():
         background-color: #574bff;
     }
     .search-card {
-        background-color: white;
+        background-color: black;
         padding: 15px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -52,7 +52,7 @@ def setup_page():
     }
     .result-card {
         border-left: 4px solid #6C63FF;
-        background-color: white;
+        background-color: black;
         padding: 15px;
         border-radius: 8px;
         margin-bottom: 10px;
