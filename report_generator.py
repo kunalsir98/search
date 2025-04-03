@@ -59,9 +59,21 @@ def extract_financial_content(results, query, all_text):
     # Initialize content structure
     content = {}
     
-    # Looking for financial terms in the text
-    financial_terms = ['stock', 'market', 'price', 'investment', 'financial', 'economy', 'profit', 
-                       'loss', 'growth', 'decline', 'shares', 'investor', 'trend', 'forecast']
+    # Expanded list of financial-related terms
+    financial_terms = [
+        'stock', 'market', 'price', 'investment', 'financial', 'economy', 'profit',
+        'loss', 'growth', 'decline', 'shares', 'investor', 'trend', 'forecast',
+        'capital', 'revenue', 'income', 'expenditure', 'assets', 'liabilities',
+        'credit', 'debt', 'loan', 'interest rate', 'dividends', 'portfolio',
+        'mutual funds', 'hedge funds', 'ETF', 'cryptocurrency', 'bitcoin', 'blockchain',
+        'forex', 'trading', 'exchange', 'inflation', 'deflation', 'GDP', 'bonds',
+        'equity', 'derivatives', 'commodities', 'fiscal policy', 'monetary policy',
+        'taxation', 'banking', 'mortgage', 'real estate', 'insurance', 'wealth management',
+        'pension', 'retirement', 'venture capital', 'private equity', 'IPO', 'bear market',
+        'bull market', 'leverage', 'risk management', 'liquidity', 'accounting',
+        'financial statements', 'cash flow', 'balance sheet', 'income statement'
+    ]
+
     
     # Count financial terms
     term_count = {}
@@ -261,9 +273,22 @@ def extract_healthcare_content(results, query, all_text):
     # Initialize content structure
     content = {}
     
-    # Looking for healthcare terms in the text
-    healthcare_terms = ['health', 'medical', 'treatment', 'clinical', 'drug', 'therapy', 'patient', 
-                         'disease', 'condition', 'vaccine', 'healthcare', 'doctor', 'hospital', 'trial']
+   # Expanded list of healthcare-related terms
+    healthcare_terms = [
+        'health', 'medical', 'treatment', 'clinical', 'drug', 'therapy', 'patient',
+        'disease', 'condition', 'vaccine', 'healthcare', 'doctor', 'hospital', 'trial',
+        'medicine', 'diagnosis', 'symptom', 'prescription', 'surgery', 'operation',
+        'mental health', 'wellness', 'nutrition', 'pharmaceutical', 'public health',
+        'epidemic', 'pandemic', 'virus', 'infection', 'antibiotic', 'immune system',
+        'genetics', 'biotechnology', 'biomedicine', 'telemedicine', 'wearable health',
+        'nursing', 'physician', 'cardiology', 'oncology', 'neurology', 'radiology',
+        'dermatology', 'gastroenterology', 'orthopedics', 'ophthalmology', 'urology',
+        'gynecology', 'pediatrics', 'anesthesia', 'ICU', 'emergency care', 'first aid',
+        'health monitoring', 'blood test', 'X-ray', 'MRI', 'CT scan', 'ultrasound',
+        'mental illness', 'therapy session', 'rehabilitation', 'home care',
+        'dietary supplement', 'alternative medicine', 'holistic health'
+    ]
+
     
     # Count healthcare terms
     term_count = {}
@@ -461,9 +486,21 @@ def extract_technology_content(results, query, all_text):
     # Initialize content structure
     content = {}
     
-    # Looking for technology terms in the text
-    tech_terms = ['technology', 'software', 'digital', 'innovation', 'app', 'development', 
-                 'system', 'platform', 'data', 'ai', 'artificial intelligence', 'machine learning', 'algorithm']
+    # Expanded list of technology-related terms
+    tech_terms = [
+        'technology', 'software', 'digital', 'innovation', 'app', 'development',
+        'system', 'platform', 'data', 'ai', 'artificial intelligence', 
+        'machine learning', 'algorithm', 'gadgets', 'grocery', 'automation', 
+        'robotics', 'deep learning', 'neural network', 'big data', 'cloud computing',
+        'cybersecurity', 'blockchain', 'IoT', 'internet of things', 'quantum computing',
+        'virtual reality', 'augmented reality', 'metaverse', '5G', 'nanotechnology',
+        'biotechnology', 'computing', 'sensors', 'mobile', 'smartphone', 'tablet',
+        'laptop', 'server', 'database', 'networking', 'API', 'web development',
+        'frontend', 'backend', 'full stack', 'devops', 'containerization', 'docker',
+        'kubernetes', 'microservices', 'edge computing', 'AI ethics', 'LLM', 
+        'chatbot', 'NLP', 'natural language processing', 'computer vision', 'automation tools'
+    ]
+
     
     # Count technology terms
     term_count = {}
