@@ -95,7 +95,7 @@ with various factors influencing market behavior and investor sentiment.
         findings.append(f"Stock performance for {query.split()[0]} shows {random.choice(['notable growth', 'concerning volatility', 'relative stability', 'mixed performance'])} in recent trading periods.")
     
     if term_count['market'] > 0:
-        findings.append(f"Market analysis indicates {random.choice(['strong potential', 'cautious outlook', 'competitive positioning', 'shifting dynamics'])} within the sector.")
+        findings.append(f"Market analysis indicates {random.choice(['strong potential', 'cautious outlook', 'competitive positioning', 'shifting dynamics','market expansion oppurtunities','emerging threats from new players','strong competitive pressure'])} within the sector.")
     
     if term_count['investment'] > 0 or term_count['investor'] > 0:
         findings.append(f"Investor sentiment remains {random.choice(['positive with continued interest', 'cautious due to market uncertainties', 'mixed with varying perspectives', 'attentive to emerging developments'])}")

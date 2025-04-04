@@ -15,7 +15,7 @@ def create_visualization(query, search_results):
     fig, ax = plt.subplots(figsize=(10, 6))
     
     # Determine the visualization type based on the query
-    if any(term in query.lower() for term in ['stock', 'market', 'price', 'investment', 'financial']):
+    if any(term in query.lower() for term in ['stock', 'market', 'price', 'investment', 'financial','economy']):
         return create_financial_visualization(query, search_results, fig, ax)
     elif any(term in query.lower() for term in ['health', 'covid', 'vaccine', 'medical', 'disease', 'treatment']):
         return create_healthcare_visualization(query, search_results, fig, ax)
