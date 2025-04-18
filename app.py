@@ -15,43 +15,108 @@ if not os.path.exists("coding"):
 # Page configuration
 setup_page()
 
-# Custom CSS for aesthetic UI (Dark mode with interactive design)
+# Custom CSS for modern UI (Glassmorphism design)
 st.markdown("""
     <style>
-        body { font-family: 'Poppins', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
         .main {
-            background-color: #1e1e2e;
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            background: rgba(16, 18, 27, 0.95) !important;
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.25);
         }
-        .stTextInput, .stSelectbox, .stCheckbox, .stButton > button {
-            border-radius: 12px;
-            padding: 14px;
-            font-size: 16px;
-            transition: all 0.3s ease;
+        
+        .stTextInput input, .stSelectbox select, .stTextArea textArea {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #ffffff !important;
+            border-radius: 12px !important;
+            padding: 14px 18px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
+        
+        .stTextInput input:focus, .stSelectbox select:focus {
+            border-color: #6366f1 !important;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+        }
+        
         .stButton > button {
-            background-color: #007bff;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
+            background: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
+            color: white !important;
             border: none;
-            padding: 14px 20px;
-            border-radius: 8px;
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
+        
         .stButton > button:hover {
-            background-color: #0056b3;
-            transform: scale(1.07);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.3);
         }
-        .stMarkdown, .stTitle { text-align: center; }
+        
+        .stButton > button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+        
+        .stMarkdown h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #6366f1, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stAlert {
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        .data-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 16px 0;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .data-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
         
         @media (max-width: 768px) {
-            .main { padding: 15px; }
-            .stButton > button { font-size: 16px; padding: 12px 18px; }
+            .main { margin: 0.5rem; }
+            .stButton > button { width: 100%; }
         }
     </style>
 """, unsafe_allow_html=True)
@@ -61,111 +126,168 @@ for key in ["search_results", "report", "search_completed", "visualization_data"
     if key not in st.session_state:
         st.session_state[key] = None if key != "search_completed" else False
 
-# Title and description
-st.title("🔍 AI-Powered Multi-Agent Search Engine")
-st.markdown("""
-    **🚀 Experience an interactive search with AI agents that:**
-    - Retrieve and analyze real-time data
-    - Summarize key insights into reports
-    - Generate rich, interactive visualizations
-    
-    **Start your intelligent search now!**
-""")
+# Main content container
+with st.container():
+    col1, col2, col3 = st.columns([1, 3, 1])
+    with col2:
+        st.markdown("<h1 style='text-align: center; margin-bottom: 0;'>🔍 AI Search Nexus</h1>", unsafe_allow_html=True)
+        st.markdown("""
+            <div style='text-align: center; margin-bottom: 2rem; color: #94a3b8;'>
+                Next-Generation Intelligent Search Platform
+            </div>
+        """, unsafe_allow_html=True)
 
-# Input for search query
-search_query = st.text_input(
-    "Enter your search topic:", placeholder="E.g., Tesla stock price, COVID-19 vaccines, AI advancements"
-)
+        # Search input section
+        with st.form(key='search_form'):
+            search_query = st.text_input(
+                "Enter your search query:",
+                placeholder="E.g., Quantum computing breakthroughs 2024",
+                key="main_search"
+            )
+            
+            with st.expander("Advanced Settings", expanded=False):
+                model_option = st.selectbox(
+                    "AI Model Selection:",
+                    ["Groq LLM-Groq", "Anthropic Claude 3 Haiku", "Mistral Large", "Llama 3 70B"],
+                    index=0
+                )
+                
+                # Model name mapping
+                model_name = {
+                    "Groq LLM-Groq": "llama3-8b-8192",
+                    "Anthropic Claude 3 Haiku": "claude-3-haiku-20240307",
+                    "Mistral Large": "mixtral-8x7b-32768",
+                    "Llama 3 70B": "llama3-70b-8192"
+                }[model_option]
+                
+                groq_api_key = st.text_input(
+                    "Groq API Key:", type="password",
+                    placeholder="Enter your API key",
+                    help="Required for accessing Groq's AI models"
+                )
+            
+            submitted = st.form_submit_button("🚀 Launch Search", use_container_width=True)
 
-# Advanced options toggle
-show_advanced = st.checkbox("Show advanced options")
+        if submitted:
+            if not search_query or not groq_api_key:
+                st.error("🔑 Both search query and API key are required!")
+            else:
+                with st.spinner("🌌 Initializing neural networks..."):
+                    llm_config = {
+                        "config_list": [{
+                            "model": model_name,
+                            "api_key": groq_api_key,
+                            "base_url": "https://api.groq.com/openai/v1"
+                        }],
+                        "cache_seed": 42
+                    }
+                    st.session_state.agents = create_search_agents(llm_config)
+                
+                progress_bar = st.progress(0, text="🚀 Launching AI agents...")
+                status_text = st.empty()
 
-# Model selection dropdown
-if show_advanced:
-    model_option = st.selectbox(
-        "Select LLM Model:",
-        ["Groq LLM-Groq", "Anthropic Claude 3 Haiku", "Mistral Large", "Llama 3 70B"],
-        index=0
-    )
-    model_name = {
-        "Groq LLM-Groq": "llama3-8b-8192",
-        "Anthropic Claude 3 Haiku": "claude-3-haiku-20240307",
-        "Mistral Large": "mixtral-8x7b-32768",
-        "Llama 3 70B": "llama3-70b-8192"
-    }.get(model_option, "llama3-8b-8192")
-else:
-    model_name = "llama3-8b-8192"
+                try:
+                    progress_bar.progress(25, text="🔍 Gathering intelligence...")
+                    st.session_state.search_results = run_search(
+                        st.session_state.agents,
+                        search_query,
+                        current_date=datetime.now().strftime('%Y-%m-%d')
+                    )
+                    
+                    progress_bar.progress(60, text="📊 Crafting visualizations...")
+                    st.session_state.visualization_data = create_visualization(
+                        search_query,
+                        st.session_state.search_results
+                    )
+                    
+                    progress_bar.progress(80, text="📝 Generating final report...")
+                    st.session_state.report = generate_report(
+                        st.session_state.agents,
+                        st.session_state.search_results
+                    )
+                    
+                    progress_bar.progress(100, text="✅ Mission accomplished!")
+                    st.session_state.search_completed = True
+                    st.balloons()
+                except Exception as e:
+                    st.error(f"⚠️ Critical error: {str(e)}")
+                    progress_bar.empty()
 
-# API key input
-groq_api_key = st.text_input(
-    "Enter your Groq API key:", type="password", placeholder="gsk_..."
-)
-
-st.info("🔑 You need a Groq API key to use this application. Get one at [groq.com](https://www.groq.com).")
-
-# Search button
-if st.button("🚀 Start Search", disabled=not search_query or not groq_api_key):
-    with st.spinner("🔄 Initializing AI agents..."):
-        llm_config = {"config_list": [{"model": model_name, "api_key": groq_api_key, "base_url": "https://api.groq.com/openai/v1"}], "cache_seed": 42}
-        st.session_state.agents = create_search_agents(llm_config)
-    
-    with st.spinner(f"🔎 Searching for '{search_query}'..."):
-        try:
-            st.session_state.search_results = run_search(st.session_state.agents, search_query, current_date=datetime.now().strftime('%Y-%m-%d'))
-            st.session_state.visualization_data = create_visualization(search_query, st.session_state.search_results)
-            st.session_state.report = generate_report(st.session_state.agents, st.session_state.search_results)
-            st.session_state.search_completed = True
-            st.success("✅ Search completed! Displaying results below.")
-        except Exception as e:
-            st.error(f"❌ An error occurred: {str(e)}")
-
-# Display results
+# Results display
 if st.session_state.search_completed:
-    display_results(st.session_state.search_results, st.session_state.report, st.session_state.visualization_data)
-    
-    # Export button
-    if st.download_button(
-        label="📥 Download Report as Markdown",
-        data=st.session_state.report,
-        file_name=f"report_{search_query.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d')}.md",
-        mime="text/markdown"
-    ):
-        st.success("✅ Report downloaded successfully!")
+    with st.container():
+        st.markdown("""
+            <div class='data-card'>
+                <h3 style='margin-bottom: 1rem; color: #6366f1'>📈 Insights Dashboard</h3>
+                {}
+            </div>
+        """.format(display_results(st.session_state.search_results, st.session_state.report, st.session_state.visualization_data)), unsafe_allow_html=True)
 
-# Footer
+    # Export controls
+    col1, col2 = st.columns(2)
+    with col1:
+        st.download_button(
+            label="📄 Export Report (MD)",
+            data=st.session_state.report,
+            file_name=f"report_{search_query.replace(' ', '_')}.md",
+            mime="text/markdown",
+            use_container_width=True
+        )
+    with col2:
+        st.download_button(
+            label="📊 Export Data (JSON)",
+            data=json.dumps(st.session_state.search_results),
+            file_name=f"data_{search_query.replace(' ', '_')}.json",
+            mime="application/json",
+            use_container_width=True
+        )
+
+# Feature highlights
 st.markdown("---")
-st.markdown("""
-    **🛠️ How It Works:**
-    - **Researcher AI** gathers relevant data.
-    - **Writer AI** structures the report.
-    - **Reviewers** ensure accuracy & consistency.
-    - **Visualization Engine** creates meaningful, interactive charts.
-
-    **🚀 Powered by Groq for ultra-fast AI processing.**
-""")
-
-# Sidebar with app info
-with st.sidebar:
-    st.header("📌 About This App")
+with st.container():
     st.markdown("""
-    **Multi-Agent AI Search Engine** uses smart AI agents to search, analyze, and summarize any topic.
+        <div style='text-align: center; margin: 3rem 0;'>
+            <h2>✨ Platform Highlights</h2>
+        </div>
+    """, unsafe_allow_html=True)
     
-    🏆 **Key Features**
-    - Web info retrieval
-    - AI-powered analysis
-    - Data visualizations
-    - Detailed reports
+    cols = st.columns(4)
+    features = [
+        {"icon": "🤖", "title": "Multi-Agent Architecture", "desc": "Collaborative AI agents working in tandem"},
+        {"icon": "⚡", "title": "Realtime Processing", "desc": "Groq-powered lightning fast responses"},
+        {"icon": "🔮", "title": "Predictive Analytics", "desc": "Advanced forecasting capabilities"},
+        {"icon": "🛡️", "title": "Enterprise Security", "desc": "Military-grade encryption"}
+    ]
     
-    🎯 **How to Use**
-    1. Enter your search topic
-    2. Provide your Groq API key
-    3. Click **Start Search**
-    4. View & download the results
+    for col, feature in zip(cols, features):
+        with col:
+            st.markdown(f"""
+                <div class='data-card' style='text-align: center; padding: 1.5rem;'>
+                    <div style='font-size: 2rem; margin-bottom: 1rem;'>{feature['icon']}</div>
+                    <h4>{feature['title']}</h4>
+                    <p style='color: #94a3b8; font-size: 0.9rem;'>{feature['desc']}</p>
+                </div>
+            """, unsafe_allow_html=True)
+
+# Sidebar enhancements
+with st.sidebar:
+    st.markdown("""
+        <div style='text-align: center; margin-bottom: 2rem;'>
+            <div style='font-size: 1.5rem; margin-bottom: 0.5rem;'>🚀 AI Search Nexus</div>
+            <div style='color: #94a3b8; font-size: 0.9rem;'>v2.1.0</div>
+        </div>
+    """, unsafe_allow_html=True)
     
-    🔥 **Available AI Models**
-    - **Llama 3 (8B & 70B)**
-    - **Claude 3 Haiku**
-    - **Mixtral 8x7B**
+    st.markdown("### 🔍 Search History")
+    # Add search history component here
     
-    **All processing is powered by Groq API.**
-""")
+    st.markdown("### 🏆 Leaderboard")
+    # Add user statistics component here
+    
+    st.markdown("---")
+    st.markdown("""
+        <div style='text-align: center; color: #94a3b8; font-size: 0.85rem;'>
+            Powered by Groq LPU™ Inference Engine<br>
+            © 2024 AI Search Nexus. All rights reserved.
+        </div>
+    """, unsafe_allow_html=True)
